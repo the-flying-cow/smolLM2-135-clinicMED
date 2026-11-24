@@ -1,0 +1,19 @@
+{
+  "base_model_id": "HuggingFaceTB/SmolLM2-135M",
+  "dataset_id": "AGBonnet/augmented-clinical-notes",
+  "num_samples": 2500,
+  "train_split": 0.9,
+  "output_dir": "adapters/smollm2-135m-clinical-lora",
+  "block_size": 128,
+  "batch_size": 4,
+  "learning_rate": 0.0002,
+  "max_steps": 300,
+  "eval_interval": 50,
+  "eval_iters": 15,
+  "lora": {
+    "r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"]
+  }
+}
