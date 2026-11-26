@@ -17,13 +17,3 @@ def build_lora_model(config: dict, device: str= "cpu"):
     model.to(device)
 
     return model
-
-if __name__ == "__main__":
-    with open("configs/lora_config.json", "r") as f:
-        cfg = json.load(f)
-
-    lora_model = build_lora_model(cfg)
-
-    lora_model.print_trainable_parameters()
-
-    print(lora_model.base_model.model.model.layers[0].self_attn)

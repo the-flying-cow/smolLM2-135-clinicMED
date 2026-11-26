@@ -51,8 +51,3 @@ class ClinicalDomainData:
         idx= torch.randint(len(data) - self.block_size, (self.batch_size, ))
         x= torch.stack([data[i: i + self.block_size] for i in idx]).to(self.device)
         return x, x.clone()
-
-loader= ClinicalDomainData(cfg)
-x, y= loader.get_batch("train")
-
-print(loader.tokenizer.decode(x[0]))

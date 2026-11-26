@@ -25,22 +25,3 @@ def estimate_loss(model, data_loader: ClinicalDomainData, eval_iters: int) -> di
 
     model.train()
     return results
-
-if __name__ == "__main__":
-    with open("configs/lora_config.json", "r") as f:
-        cfg= json.load(f)
-
-    data_loader= ClinicalDomainData(cfg, device= "cpu")
-    model= build_lora_model(cfg, device= "cpu")
-
-    print(f"Step - 0 unadapted weights")
-    metrics= estimate_loss(model, data_loader, eval_iters= cfg["eval_iters"])
-
-    print(
-        f"Train Loss: {metrics['train']['loss']:.4f} |"
-        f"Train PPL: {metrics['train']['perplexity']:.2f}"
-    )
-    print(
-        f"Val Loss:   {metrics['val']['loss']:.4f} |"
-        f"Val PPL:   {metrics['val']['perplexity']:.2f}"
-    )
